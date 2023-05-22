@@ -6,12 +6,27 @@ from opencog.execute import execute_atom
 from opencog.utilities import set_default_atomspace, initialize_opencog
 from opencog.type_constructors import *
 
+atomspace = AtomSpace()
+set_default_atomspace(atomspace)
+initialize_opencog(atomspace)
 
-if __name__ == "__main__":
-    atomspace = AtomSpace()
+
+def put_atom(message):
+    global atomspace
     set_default_atomspace(atomspace)
     initialize_opencog(atomspace)
+    atom = ConceptNode(message)
+    return atom
 
+
+def get_atom():
+    global atomspace
+    set_default_atomspace(atomspace)
+    initialize_opencog(atomspace)
+    atom = ConceptNode(message)
+
+
+if __name__ == "__main__":
     atom = ConceptNode("My first python created node")
     atom.tv = TruthValue(0.75, 0.1)
 

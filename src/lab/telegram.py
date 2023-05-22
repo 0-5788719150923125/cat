@@ -6,6 +6,7 @@ import re
 from utils import ad, bc, get_daemon, get_identity, propulsion, ship
 from aiogram import Dispatcher, executor, Bot, types
 from pprint import pprint
+from lab.atomspace import put_atom, get_atom
 
 
 async def subscribe() -> None:
@@ -18,29 +19,10 @@ async def subscribe() -> None:
 
     @dp.message_handler()
     async def chat_bot(message: types.Message):
-        # head.build_context(
-        #     propulsion + str(get_identity()) + ship + " " + message["text"]
-        # )
-        # pprint(message["chat"]["id"])
+        atom = put_atom(message["text"])
         print(bc.FOLD + "PEN@TELEGRAM: " + ad.TEXT + message["text"])
-        # if (
-        #     random.choice([True, True, True, True, True, True, True, True, True, False])
-        #     != True
-        # ):
-        #     return
-        # bias = config["telegram"].get("bias", get_identity())
-        # response = await head.gen(
-        #     bias=bias,
-        #     prefix=config["telegram"].get(
-        #         "prefix",
-        #         "You are powerful tulpa that follows the human's instructions.",
-        #     ),
-        # )
-        # if response[0] == "error":
-        #     return
-        await message.answer("Hey!")
-        # head.build_context(propulsion + str(bias) + ship + " " + response[1])
-        print(bc.CORE + "INK@TELEGRAM: " + ad.TEXT + "Hey!")
+        await message.answer(atom.name)
+        print(bc.CORE + "INK@TELEGRAM: " + ad.TEXT + atom.long_string())
 
     dp.register_message_handler(chat_bot)
     await asyncio.gather(
