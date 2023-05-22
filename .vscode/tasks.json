@@ -1,0 +1,112 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ps",
+      "detail": "View a list of all running containers for this project.",
+      "type": "shell",
+      "command": "docker-compose ps"
+    },
+    {
+      "label": "logs",
+      "detail": "View logs for all services.",
+      "type": "shell",
+      "command": "docker-compose logs --follow"
+    },
+    {
+      "label": "exec",
+      "detail": "Open an interactive shell in the specified container.",
+      "type": "shell",
+      "command": "docker-compose exec \"${input:ship}\" /bin/sh"
+    },
+    {
+      "label": "build",
+      "detail": "Build and tag a new Docker image from the Dockerfile.",
+      "type": "shell",
+      "command": "docker-compose build"
+    },
+    {
+      "label": "push",
+      "detail": "Push the newly-built Docker image to a registry.",
+      "type": "shell",
+      "command": "docker-compose push"
+    },
+    {
+      "label": "up",
+      "detail": "Start the services in a development environment.",
+      "type": "shell",
+      "command": "docker-compose up",
+      "windows": {
+        "command": "docker-compose up"
+      }
+    },
+    {
+      "label": "guile",
+      "detail": "Connect to the Guile CLI.",
+      "type": "shell",
+      "command": "docker-compose run -it atomspace guile"
+    },
+    {
+      "label": "run",
+      "detail": "Connect to the Guile CLI.",
+      "type": "shell",
+      "command": "docker-compose run -it atomspace"
+    },
+    {
+      "label": "i",
+      "detail": "Prepare your data in various ways.",
+      "type": "shell",
+      "command": "docker-compose run vtx python3 -c \"import i; ${input:i}\""
+    },
+    {
+      "label": "auto",
+      "detail": "Turn on autopilot.",
+      "type": "shell",
+      "command": "docker-compose up -d"
+    },
+    {
+      "label": "prune",
+      "detail": "Prune all unused images, networks, and volumes.",
+      "type": "shell",
+      "command": "docker system prune -f"
+    },
+    {
+      "label": "down",
+      "detail": "Stop the service in Docker.",
+      "type": "shell",
+      "command": "docker-compose down --remove-orphans"
+    },
+    {
+      "label": "stats",
+      "detail": "View live Docker stats.",
+      "type": "shell",
+      "command": "docker stats"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "env",
+      "description": "Which model should I train?",
+      "options": ["atomspace"]
+    },
+    {
+      "type": "pickString",
+      "id": "i",
+      "description": "Which task should I execute?",
+      "options": [
+        "i.crawl()",
+        "i.fetch_from_reddit()",
+        "i.prepare_discord_messages()",
+        "i.fetch_from_discord()",
+        "i.juxtapose_data()"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "ship",
+      "description": "Which ship should I enter?",
+      "options": ["vtx", "ctx", "pet", "pit", "shm"]
+    }
+  ]
+}

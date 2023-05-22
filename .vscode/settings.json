@@ -1,0 +1,11 @@
+{
+  "editor.defaultFormatter": "ms-python.black-formatter",
+  "python.formatting.blackArgs": ["--line-length", "88"],
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "prettier.enable": true,
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": true,
+  "terminal.integrated.scrollback": 5000,
+  "search.useIgnoreFiles": false
+}
