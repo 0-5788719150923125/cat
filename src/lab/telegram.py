@@ -5,7 +5,6 @@ import os
 import re
 from utils import ad, bc, get_daemon, get_identity, propulsion, ship
 from aiogram import Dispatcher, executor, Bot, types
-from pprint import pprint
 from lab.atomspace import put_atom, get_atom
 
 
@@ -20,9 +19,10 @@ async def subscribe() -> None:
     @dp.message_handler()
     async def chat_bot(message: types.Message):
         atom = put_atom(message["text"])
-        print(bc.FOLD + "PEN@TELEGRAM: " + ad.TEXT + message["text"])
+        print(bc.FOLD + "M0M@TELEGRAM: " + ad.TEXT + message["text"])
         await message.answer(atom.name)
-        print(bc.CORE + "INK@TELEGRAM: " + ad.TEXT + atom.long_string())
+        print(bc.CORE + "T0M@TELEGRAM: " + ad.TEXT + atom.long_string())
+        print(atom.tv)
 
     dp.register_message_handler(chat_bot)
     await asyncio.gather(

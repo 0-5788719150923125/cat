@@ -16,6 +16,7 @@ def put_atom(message):
     set_default_atomspace(atomspace)
     initialize_opencog(atomspace)
     atom = ConceptNode(message)
+    # atom = LgParseLink(message)
     return atom
 
 
