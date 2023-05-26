@@ -19,10 +19,10 @@ async def subscribe() -> None:
     @dp.message_handler()
     async def chat_bot(message: types.Message):
         atom = put_atom(message["text"])
-        print(bc.FOLD + "M0M@TELEGRAM: " + ad.TEXT + message["text"])
-        await message.answer(atom.name)
-        print(bc.CORE + "T0M@TELEGRAM: " + ad.TEXT + atom.long_string())
-        print(atom.tv)
+        print(bc.FOLD + "YOU@TELEGRAM: " + ad.TEXT + message["text"])
+        # await message.answer(atom.name)
+        # print(bc.CORE + "EVE@TELEGRAM: " + ad.TEXT + atom.long_string())
+        # print(atom.tv)
 
     dp.register_message_handler(chat_bot)
     await asyncio.gather(

@@ -1,5 +1,7 @@
 from opencog.atomspace import AtomSpace, types
 from opencog.execute import execute_atom
+from opencog.scheme import scheme_eval, scheme_eval_h
+from pprint import pprint
 
 # import opencog.logger
 # import opencog.scheme_wrapper
@@ -15,8 +17,24 @@ def put_atom(message):
     global atomspace
     set_default_atomspace(atomspace)
     initialize_opencog(atomspace)
-    atom = ConceptNode(message)
-    # atom = LgParseLink(message)
+    # atom = ConceptNode(message)
+    # atom = types.LgParseLink(message)
+    # atom = types.LgParseDisjuncts(message)
+    scheme = f"""
+    (use-modules (opencog) (opencog exec))
+    (use-modules (opencog nlp) (opencog nlp lg-parse))
+
+    (cog-execute!
+    (LgParseDisjuncts (PhraseNode "{message}")
+        (LgDictNode "en")
+        (NumberNode 1)))
+    """
+    atom = scheme_eval(atomspace, scheme)
+    # pprint(atom)
+    # pprint(atom)
+    # my_nodes = atomspace.get_atoms_by_type(types.LinkValue)
+    my_nodes = atomspace.get_atoms_by_type(types.Atom)
+    pprint(my_nodes[0].long_string())
     return atom
 
 
