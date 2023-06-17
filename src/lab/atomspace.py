@@ -1,3 +1,5 @@
+import os
+import opencog.atomspace
 from opencog.atomspace import AtomSpace, types
 from opencog.execute import execute_atom
 from opencog.scheme import scheme_eval, scheme_eval_h
@@ -11,6 +13,13 @@ from opencog.type_constructors import *
 atomspace = AtomSpace()
 set_default_atomspace(atomspace)
 initialize_opencog(atomspace)
+
+help("opencog")
+print(dir(opencog.atomspace))
+
+
+def load_brain():
+    os.system("guile /app/src/cog/entrypoint.scm")
 
 
 def put_atom(message):

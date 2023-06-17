@@ -10,6 +10,7 @@ tasks = {}
 # This is the main loop for the entire machine
 @asyncio.coroutine
 async def main(loop):
+    atomspace.load_brain()
     while True:
         # Prune completed tasks
         for task in tasks.copy():

@@ -106,7 +106,7 @@
       "type": "pickString",
       "id": "ship",
       "description": "Which ship should I enter?",
-      "options": ["vtx", "ctx", "pet", "pit", "shm"]
+      "options": ["cog"]
     }
   ]
 }

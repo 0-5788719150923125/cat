@@ -14,4 +14,4 @@
 (define num1 (NumberNode 3)) 
 (define num2 (NumberNode 5))
 (define link (PlusLink num1 num2))
-(display (cog-execute! link)) 
+; (display (cog-execute! link)) 
