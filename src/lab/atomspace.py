@@ -19,7 +19,7 @@ print(dir(opencog.atomspace))
 
 
 def load_brain():
-    os.system("guile /app/src/cog/entrypoint.scm")
+    os.system("guile /app/src/cog/index.scm")
 
 
 def put_atom(message):

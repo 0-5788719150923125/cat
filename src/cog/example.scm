@@ -25,3 +25,15 @@
            (PredicateNode "is-a")
            atom1
            atom2))
+
+
+
+
+
+(ConceptNode "HelloWorld")
+(InheritanceLink (ConceptNode "Fox") (ConceptNode "Animal"))
+
+(define num1 (NumberNode 3)) 
+(define num2 (NumberNode 5))
+(define link (PlusLink num1 num2))
+; (display (cog-execute! link)) 
