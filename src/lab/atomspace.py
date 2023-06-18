@@ -1,5 +1,6 @@
 import os
-import opencog.atomspace
+import subprocess
+import opencog
 from opencog.atomspace import AtomSpace, types
 from opencog.execute import execute_atom
 from opencog.scheme import scheme_eval, scheme_eval_h
@@ -19,7 +20,7 @@ print(dir(opencog.atomspace))
 
 
 def load_brain():
-    os.system("guile /app/src/cog/index.scm")
+    subprocess.call("guile /app/src/cog/index.scm &", shell=True)
 
 
 def put_atom(message):
@@ -47,11 +48,25 @@ def put_atom(message):
     return atom
 
 
-def get_atom():
+def get_atom(atom):
     global atomspace
     set_default_atomspace(atomspace)
     initialize_opencog(atomspace)
     atom = ConceptNode(message)
+
+
+def get_atom_by_name(atom_name):
+    global atomspace
+    set_default_atomspace(atomspace)
+    initialize_opencog(atomspace)
+    query = ConceptNode(atom_name)
+    # query = atomspace.add_node(types.AtomSpaceNode)  # Create a query node
+    # query.set_name(atom_name)  # Set the name for the query node
+    # query.set_type(ConceptNode)  # Set the type for the query node
+
+    result = atomspace.get_atoms_by_name(query)  # Retrieve the atom from the AtomSpace
+
+    return result
 
 
 if __name__ == "__main__":

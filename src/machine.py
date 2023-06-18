@@ -23,7 +23,7 @@ async def main(loop):
             task.set_name("telegram")
             tasks[task.get_name()] = task
 
-        await asyncio.sleep(66.6666)
+        await asyncio.sleep(8.888)
 
 
 def loop_in_thread(loop):
