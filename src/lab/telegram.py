@@ -6,6 +6,7 @@ import re
 from utils import ad, bc, get_daemon, get_identity, propulsion, ship
 from aiogram import Dispatcher, executor, Bot, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from lab.atomspace import put_atom, get_atom, get_atom_by_name
@@ -33,12 +34,23 @@ async def subscribe() -> None:
     async def polling():
         await dp.start_polling()
 
-    # @dp.message_handler(commands=["start", "help"])
-    # async def send_welcome(message: types.Message):
-    #     """
-    #     This handler will be called when user sends `/start` or `/help` command
-    #     """
-    #     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
+    # You can use state '*' if you need to handle all states
+    @dp.message_handler(state="*", commands="cancel")
+    @dp.message_handler(Text(equals="cancel", ignore_case=True), state="*")
+    async def cancel_handler(message: types.Message, state: FSMContext):
+        """
+        Allow user to cancel any action
+        """
+        current_state = await state.get_state()
+
+        if current_state is None:
+            return
+
+        logging.info("Cancelling state %r", current_state)
+        # Cancel state and inform user about it
+        await state.finish()
+        # And remove keyboard (just in case)
+        await message.reply("Cancelled.", reply_markup=types.ReplyKeyboardRemove())
 
     @dp.message_handler(commands=["atom"])
     async def get_atom(message: types.Message):
@@ -46,8 +58,8 @@ async def subscribe() -> None:
         This handler will be called when user sends `/start` or `/help` command
         """
         print(message.text)
-        result = get_atom_by_name("atom1")
-        print(result)
+        # result = get_atom_by_name("atom1")
+        # print(result)
         await Form.name.set()
         await message.reply("Which atom shall I focus on?")
 

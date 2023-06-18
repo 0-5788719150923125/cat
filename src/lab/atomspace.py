@@ -4,6 +4,7 @@ import opencog
 from opencog.atomspace import AtomSpace, types
 from opencog.execute import execute_atom
 from opencog.scheme import scheme_eval, scheme_eval_h
+from opencog import nlp_types
 from pprint import pprint
 
 # import opencog.logger
@@ -17,6 +18,7 @@ initialize_opencog(atomspace)
 
 help("opencog")
 print(dir(opencog.atomspace))
+print(dir(nlp_types))
 
 
 def load_brain():
