@@ -2,6 +2,8 @@ import asyncio
 import logging
 import random
 import os
+import subprocess
+import shlex
 import re
 from utils import ad, bc, get_daemon, get_identity, propulsion, ship
 from aiogram import Dispatcher, executor, Bot, types
@@ -78,10 +80,14 @@ async def subscribe() -> None:
     @dp.message_handler()
     async def chat_bot(message: types.Message):
         print(bc.FOLD + "YOU@TELEGRAM: " + ad.TEXT + message["text"])
-        # atom = put_atom(message["text"])
-        # await message.answer(atom.name)
-        # print(bc.CORE + "EVE@TELEGRAM: " + ad.TEXT + atom.long_string())
-        # print(atom.tv)
+        try:
+            args = shlex.split(message["text"])
+            output = subprocess.run(
+                args, capture_output=True, text=True, check=True
+            ).stdout
+        except Exception as e:
+            output = e
+        await message.answer(str(output))
 
     await asyncio.gather(
         polling(),

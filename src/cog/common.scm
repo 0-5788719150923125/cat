@@ -4,3 +4,9 @@
 (add-to-load-path ".")
 (use-modules (opencog))
 (use-modules (opencog exec))
+
+; Capture command-line arguments
+(define (process-arguments args)
+  args)
+
+(define args (cdr (command-line)))

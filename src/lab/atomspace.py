@@ -21,8 +21,8 @@ print(dir(opencog.atomspace))
 print(dir(nlp_types))
 
 
-def load_brain():
-    subprocess.call("guile /app/src/cog/index.scm &", shell=True)
+# def load_brain():
+#     subprocess.call("guile /app/src/cog/index.scm &", shell=True)
 
 
 def put_atom(message):
