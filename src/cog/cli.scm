@@ -4,7 +4,7 @@
 (add-to-load-path ".")
 (use-modules (opencog))
 (use-modules (opencog exec))
+(use-modules (ice-9 format))
 
-;; Create atoms
-(define atom1 (ConceptNode "atom1"))
-(define atom2 (ConceptNode "atom2"))
+(pretty-print (command-line))
+(newline)

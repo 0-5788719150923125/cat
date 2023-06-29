@@ -49,7 +49,6 @@ async def subscribe() -> None:
         logging.info("Cancelling state %r", current_state)
         # Cancel state and inform user about it
         await state.finish()
-        # And remove keyboard (just in case)
         await message.reply("Cancelled.", reply_markup=types.ReplyKeyboardRemove())
 
     @dp.message_handler(commands=["atom"])
@@ -84,9 +83,6 @@ async def subscribe() -> None:
         # print(bc.CORE + "EVE@TELEGRAM: " + ad.TEXT + atom.long_string())
         # print(atom.tv)
 
-    # await bot.set_my_commands(...)
-    # dp.register_message_handler(chat_bot)
-    # dp.register_message_handler(send_welcome)
     await asyncio.gather(
         polling(),
     )

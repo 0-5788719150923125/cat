@@ -8,7 +8,9 @@ RUN npm i -g nodemon
 
 WORKDIR /app
 
-COPY ./requirements.txt src ./
+COPY src ./src
+
+COPY requirements.txt ./
 
 RUN pip3 install -r requirements.txt
 

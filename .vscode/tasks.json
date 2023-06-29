@@ -17,7 +17,7 @@
       "label": "exec",
       "detail": "Open an interactive shell in the specified container.",
       "type": "shell",
-      "command": "docker-compose exec \"${input:ship}\" /bin/sh"
+      "command": "docker-compose exec \"${input:ship}\" /bin/bash"
     },
     {
       "label": "build",
