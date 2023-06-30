@@ -11,7 +11,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from lab.atomspace import put_atom, get_atom, get_atom_by_name
+from lab.atomspace import put_atom, get_atom, get_atom_by_name, exec_script
 
 
 logging.basicConfig(level=logging.INFO)
@@ -80,6 +80,7 @@ async def subscribe() -> None:
     @dp.message_handler()
     async def chat_bot(message: types.Message):
         print(bc.FOLD + "YOU@TELEGRAM: " + ad.TEXT + message["text"])
+        # exec_script()
         try:
             args = shlex.split(message["text"])
             output = subprocess.run(

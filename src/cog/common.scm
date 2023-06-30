@@ -10,3 +10,7 @@
   args)
 
 (define args (cdr (command-line)))
+
+; (if (and (defined? process-arguments)
+;          (not (null? process-arguments)))
+;     (process-arguments args))

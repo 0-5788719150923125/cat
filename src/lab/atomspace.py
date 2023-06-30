@@ -71,6 +71,25 @@ def get_atom_by_name(atom_name):
     return result
 
 
+def exec_script():
+    global atomspace
+    set_default_atomspace(atomspace)
+    initialize_opencog(atomspace)
+    # Load the Scheme script file
+    with open("/app/src/cog/add_atom.scm", "r") as f:
+        script_code = f.read()
+
+    arguments_str = '(define args (list "hello"))'
+
+    script_code_with_args = f"{arguments_str}{script_code})"
+
+    # Evaluate the Scheme code within AtomSpace
+    result = scheme_eval(atomspace, script_code_with_args)
+
+    # Access and process the result as needed
+    print(result)
+
+
 if __name__ == "__main__":
     atom = ConceptNode("My first python created node")
     atom.tv = TruthValue(0.75, 0.1)
